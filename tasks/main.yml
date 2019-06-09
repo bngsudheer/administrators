@@ -14,5 +14,5 @@
 - name: sudoer
   template:
     src: etc/sudoers.d/template
-    dest: "/etc/sudoers.d/{{item}}"
+    dest: "/etc/sudoers.d/{{ item }}"
   loop: "{{ administrators_names }}"
