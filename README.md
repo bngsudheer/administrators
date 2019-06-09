@@ -12,8 +12,8 @@ Role Variables
 ```yml
 administrators_names: ['admin01', 'admin02']
 administrators_keys:
-  - name: admin01
-    key: id_rsa_pub_admin01
+  - username: admin01
+    key: /path/to/id_rsa_pub_admin01
 ```
 
 Dependencies
@@ -24,7 +24,12 @@ None
 Example Playbook
 ----------------
 ```yml
-  - hosts: servers
+  - hosts: servers  
+    vars:
+      - administrators_names: ['admin01', 'admin02']
+      - administrators_keys:
+          - username: admin01
+            key: /path/to/id_rsa_pub_admin01
     roles:
        - role: gavika.administrators
 ```
