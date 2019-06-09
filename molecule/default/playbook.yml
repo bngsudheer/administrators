@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    - administrators_names: ['admin01', 'admin02']
+    - administrators_keys:
+        - username: admin01
+          key: id_rsa_pub_admin01
+  roles:
+    - role: administrators
