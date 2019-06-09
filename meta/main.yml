@@ -24,6 +24,6 @@ galaxy_info:
     - administrators
     - users
     - sudoers
-    - sshKeys
+    - sshkeys
 
 dependencies: []
