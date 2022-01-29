@@ -1,3 +1,4 @@
 ---
 administrators_names: []
 administrators_keys: []
+administrators_default_shell: "/bin/bash"

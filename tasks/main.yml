@@ -2,6 +2,7 @@
 - name: administrative user
   user:
     name: "{{ item }}"
+    shell: "{{ administrators_default_shell }}"
   loop: "{{ administrators_names }}"
 
 - name: Copy SSH keys to administrative user
