@@ -17,3 +17,11 @@
     src: etc/sudoers.d/template
     dest: "/etc/sudoers.d/{{ item }}"
   loop: "{{ administrators_names }}"
+
+- name: delete user
+  user:
+    name: "{{ item }}"
+    shell: "{{ administrators_default_shell }}"
+    state: absent
+    remove: yes
+  loop: "{{ administrators_names }}"
