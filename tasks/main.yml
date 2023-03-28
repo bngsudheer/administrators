@@ -1,7 +1,7 @@
 ---
 - name: administrative user
   user:
-    name: "{{ item }}"
+    name: "{{ item.name  }}"
     shell: "{{ administrators_default_shell }}"
   loop: "{{ administrators_names }}"
 
@@ -18,10 +18,13 @@
     dest: "/etc/sudoers.d/{{ item }}"
   loop: "{{ administrators_names }}"
 
-- name: delete user
+- name: remove user
   user:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     shell: "{{ administrators_default_shell }}"
     state: absent
     remove: yes
   loop: "{{ administrators_names }}"
+  when: "{{item.active }} == false"
+
+
