@@ -1,9 +1,10 @@
 ---
 - name: administrative user
   user:
-    name: "{{ item }}"
+    name: "{{ item.name  }}"
     shell: "{{ administrators_default_shell }}"
   loop: "{{ administrators_names }}"
+  when: "item.active == true"
 
 - name: Copy SSH keys to administrative user
   authorized_key:
@@ -15,5 +16,15 @@
 - name: sudoer
   template:
     src: etc/sudoers.d/template
-    dest: "/etc/sudoers.d/{{ item }}"
+    dest: "/etc/sudoers.d/{{ item.name }}"
   loop: "{{ administrators_names }}"
+  when: "item.active == true"
+
+- name: remove user
+  user:
+    name: "{{ item.name }}"
+    shell: "{{ administrators_default_shell }}"
+    state: absent
+    remove: yes
+  loop: "{{ administrators_names }}"
+  when: "item.active == false"
