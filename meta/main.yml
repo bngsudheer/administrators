@@ -3,28 +3,24 @@ galaxy_info:
   author: Sudheer Satyanarayana
   description: Create Linux user with sudo privileges
   company: Gavika Information Technologies Pvt. Ltd.
-
+  role_name: administrators
   license: Apache
+  namespace: gavika
 
-  min_ansible_version: 2.4
+  min_ansible_version: "2.14"
   platforms:
-    - name: Fedora
-      versions:
-        - 30
-        - 29
     - name: EL
       versions:
-        - 7
-        - 6
+        - all
     - name: Ubuntu
       versions:
-        - bionic
-        - xenial
+        - jammy
 
   galaxy_tags:
     - administrators
     - users
     - sudoers
     - sshkeys
+    - linux
 
 dependencies: []

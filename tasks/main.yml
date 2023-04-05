@@ -1,19 +1,19 @@
 ---
-- name: administrative user
-  user:
+- name: Administrative user
+  ansible.builtin.user:
     name: "{{ item }}"
     shell: "{{ administrators_default_shell }}"
   loop: "{{ administrators_names }}"
 
 - name: Copy SSH keys to administrative user
-  authorized_key:
+  ansible.posix.authorized_key:
     user: "{{ item.username }}"
     state: present
     key: "{{ lookup('file', item.key) }}"
   loop: "{{ administrators_keys }}"
 
-- name: sudoer
-  template:
+- name: Sudoer
+  ansible.legacy.template:
     src: etc/sudoers.d/template
     dest: "/etc/sudoers.d/{{ item }}"
   loop: "{{ administrators_names }}"

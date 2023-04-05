@@ -34,10 +34,24 @@ Example Playbook
        - role: gavika.administrators
 ```
 
+Running Tests
+---------------
+```sh
+python3 -m venv ansible-env # you may have to uninstall other Ansible and molecule installations on your host
+source ansible-env/bin/activate
+pip install molecule[docker,lint,docker] ansible-lint
+# cd molecule_reference_role/ # this repository root
+yamllint .
+molecule lint
+molecule converge
+MOLECULE_PLAYBOOK=user-exists.yml
+molecule test
+```
+
 License
 -------
 
-Apache
+Apache 
 
 Author Information
 ------------------

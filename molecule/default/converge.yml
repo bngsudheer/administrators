@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    administrators_names:
+      - name: "admin01"
+        active: true
+      - name: "admin02"
+        active: true
+  tasks:
+    - name: Include acme.my_new_role
+      ansible.builtin.include_role:
+        name: acme.molecule_reference_role
