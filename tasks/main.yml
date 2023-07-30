@@ -1,5 +1,5 @@
 ---
-- name: administrative user
+- name: Administrative user
   user:
     name: "{{ item.name  }}"
     shell: "{{ administrators_default_shell }}"
@@ -12,15 +12,16 @@
     state: present
     key: "{{ lookup('file', item.key) }}"
   loop: "{{ administrators_keys }}"
+  when: "item.active == true"
 
-- name: sudoer
+- name: Sudoer
   template:
     src: etc/sudoers.d/template
     dest: "/etc/sudoers.d/{{ item.name }}"
   loop: "{{ administrators_names }}"
   when: "item.active == true"
 
-- name: remove user
+- name: Remove user
   user:
     name: "{{ item.name }}"
     shell: "{{ administrators_default_shell }}"
@@ -28,3 +29,4 @@
     remove: yes
   loop: "{{ administrators_names }}"
   when: "item.active == false"
+
