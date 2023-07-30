@@ -12,7 +12,7 @@
     state: present
     key: "{{ lookup('file', item.key) }}"
   loop: "{{ administrators_keys }}"
-  when: "lookup('dict', item.username, dict=administrators_names_map).active == true"
+  when: "administrators_names | selectattr('name', 'equalto', item.username) | map(attribute='active') | first == true"
 
 - name: Sudoer
   template:
